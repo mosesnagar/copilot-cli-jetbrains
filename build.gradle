@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.copilot.cli'
-version = '1.0.0'
+version = '1.0.1'
 
 repositories { mavenCentral() }
 
@@ -13,13 +13,13 @@ dependencies {
 }
 
 intellij {
-    version = '2023.2'
+    version = '2024.1'
     type = 'IC'
     plugins = ['org.jetbrains.plugins.terminal']
 }
 
 tasks.patchPluginXml {
-    sinceBuild = '232'
+    sinceBuild = '241'
     untilBuild = ''
 }
 
