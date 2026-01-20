@@ -1,0 +1,74 @@
+<idea-plugin>
+    <id>com.github.copilot.cli</id>
+    <name>Copilot CLI Terminal</name>
+    <version>1.0.0</version>
+
+    <vendor email="your-email@example.com" url="https://github.com/github/copilot-cli">GitHub</vendor>
+
+    <idea-version since-build="232.0" />
+
+    <description><![CDATA[
+<p><b>Copilot CLI Terminal</b> — Run <code>ghcs</code> (GitHub Copilot CLI) seamlessly inside IntelliJ-based IDEs.
+No more switching to external terminals.</p>
+
+<hr/>
+
+<h3>✨ Key Features</h3>
+<ul>
+  <li><b>One-click focus & restart</b> — Use Tools → Focus / Restart to quickly switch to the terminal; hold Shift to rebuild the session.</li>
+  <li><b>Auto-start</b> — Automatically runs if <code>copilot</code> is detected on PATH.</li>
+  <li><b>Clean UI</b> — Dedicated right-side ToolWindow; bottom terminal stays hidden.</li>
+  <li><b>Smart Hints</b> — Balloon notification if CLI is not found.</li>
+</ul>
+
+<hr/>
+
+<h3>🛠 Why Use It</h3>
+<ul>
+  <li>Seamlessly embed <b>GitHub Copilot CLI</b> into your IDE workflow.</li>
+  <li>Avoid switching between IDE and external terminal.</li>
+  <li>Get AI-powered shell command suggestions right in your IDE.</li>
+</ul>
+
+<hr/>
+
+<p><i>Disclaimer: This plugin is an independent project and is <b>not officially affiliated with or endorsed by GitHub</b>.</i></p>
+]]></description>
+
+    <change-notes><![CDATA[
+<h3>1.0.0</h3>
+<ul>
+  <li><b>Initial Release:</b> Copilot CLI Terminal plugin for JetBrains IDEs.</li>
+  <li><b>Copilot CLI Support:</b> Run <code>ghcs</code> CLI seamlessly inside right-side ToolWindow.</li>
+  <li><b>Auto-start:</b> Automatically detects and starts Copilot CLI when available in PATH.</li>
+  <li><b>Focus & Restart:</b> Quick shortcuts to focus or restart (hold Shift for clean restart).</li>
+  <li><b>Clean UI:</b> Dedicated right-side ToolWindow, bottom terminal stays hidden.</li>
+</ul>
+]]></change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow
+                id="Copilot CLI"
+                anchor="right"
+                factoryClass="com.github.copilot.cli.CopilotCliToolWindowFactory"
+                canCloseContents="true"
+                icon="/icons/copilot.svg"/>
+        <notificationGroup
+                id="copilot.cli.notifications"
+                displayType="BALLOON"
+                isLogByDefault="true"/>
+    </extensions>
+
+    <actions>
+        <action id="CopilotCli.StartAction"
+                class="com.github.copilot.cli.StartCopilotCliAction"
+                text="Focus / Restart Copilot CLI Terminal"
+                description="Focus the ToolWindow; hold Shift to restart the session">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift G"/>
+        </action>
+    </actions>
+</idea-plugin>
